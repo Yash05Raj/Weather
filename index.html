@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Modern weather app with real-time weather information. Search weather by city name with beautiful glassmorphism UI.">
+    <meta name="keywords" content="weather, weather app, forecast, temperature, humidity, wind speed">
+    <meta name="author" content="Weather App">
+    <title>Weather App - Real-time Weather Information</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="app-title">Weather</h1>
+            <p class="app-subtitle">Real-time weather information</p>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <form id="search-form" class="search-form" role="search">
+                <div class="search-wrapper">
+                    <input type="text" id="city-input" class="search-input" placeholder="Enter city name..."
+                        autocomplete="off" aria-label="City name" required>
+                    <button type="submit" id="search-button" class="search-button" aria-label="Search weather">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Loading Animation -->
+        <div id="loading-container" class="loading-container hidden">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Fetching weather data...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-container" class="error-container hidden">
+            <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <p id="error-message" class="error-message"></p>
+        </div>
+
+        <!-- Weather Display Section -->
+        <section id="weather-section" class="weather-section hidden">
+            <!-- Location Info -->
+            <div class="location-info">
+                <h2 id="city-name" class="city-name">--</h2>
+                <p id="weather-date" class="weather-date">--</p>
+                <!-- Search Button Mobile Trigger could go here if needed -->
+            </div>
+
+            <!-- Main Weather Display (Hero) -->
+            <div class="main-weather-display">
+                <div class="temperature-hero" id="temperature">--°</div>
+                <div class="condition-pill">
+                    <span id="weather-description">--</span>
+                    <span id="high-low-temp" class="high-low">H: --° L: --°</span>
+                </div>
+            </div>
+
+            <!-- Bento Grid Details -->
+            <div class="bento-grid">
+                <!-- Feels Like -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+                        </svg>
+                        Feels Like
+                    </div>
+                    <div class="bento-value feels-like-val" id="feels-like">--°</div>
+                    <div class="bento-desc">Similar to actual temperature.</div>
+                </div>
+
+                <!-- Humidity -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                        </svg>
+                        Humidity
+                    </div>
+                    <div class="bento-value humidity-val" id="humidity">--<span class="bento-unit">%</span></div>
+                    <div class="bento-desc">The dew point is 15° right now.</div>
+                </div>
+
+                <!-- Wind -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+                        </svg>
+                        Wind
+                    </div>
+                    <div class="bento-value wind-val" id="wind-speed">--<span class="bento-unit">km/h</span></div>
+                    <div class="bento-desc">Direction: <span id="wind-deg">NW</span></div>
+                </div>
+
+                <!-- Pressure -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                        Pressure
+                    </div>
+                    <div class="bento-value pressure-val" id="pressure">--<span class="bento-unit">hPa</span></div>
+                    <div class="bento-desc">Stable atmospheric conditions.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

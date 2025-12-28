@@ -1,0 +1,398 @@
+/* Design Tokens */
+:root {
+    /* Colors */
+    --color-bg-dark: #0f1429;
+    /* Dark Blue/Black */
+    --color-bg-card: rgba(30, 35, 60, 0.4);
+    --color-bg-card-hover: rgba(45, 50, 80, 0.5);
+
+    --color-text-primary: #ffffff;
+    --color-text-secondary: rgba(255, 255, 255, 0.75);
+    --color-text-muted: rgba(255, 255, 255, 0.5);
+    --color-accent: #fecc50;
+    /* Sun/Highlight */
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-soft: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    --shadow-glow: 0 0 20px rgba(255, 255, 255, 0.1);
+
+    /* Glassmorphism */
+    --glass-background: rgba(40, 44, 70, 0.35);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-blur: 24px;
+
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-primary);
+
+    /* Starry Night Gradient Background */
+    background-color: var(--color-bg-dark);
+    background-image:
+        radial-gradient(circle at 50% 120%, #1c2550 10%, transparent 60%),
+        radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 3px),
+        radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 2px),
+        radial-gradient(white, rgba(255, 255, 255, .1) 1px, transparent 2px);
+    background-size: 100% 100%, 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 0 0, 40px 60px, 130px 270px;
+    background-attachment: fixed;
+    /* Parallax-like feel */
+    overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Layout */
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 480px;
+    /* Mobile-first, but premium usually means constrained width for weather widgets */
+    padding: var(--spacing-lg);
+    animation: fadeIn 0.8s var(--transition-normal) forwards;
+    opacity: 0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 800px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.app-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin: 0;
+    background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.app-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+/* Search */
+.search-section {
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+    z-index: 10;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--glass-background);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: 0.5rem;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-normal);
+}
+
+.search-wrapper:focus-within {
+    background: rgba(40, 44, 70, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+    outline: none;
+    font-weight: 500;
+}
+
+.search-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.search-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.search-button:hover {
+    background: var(--color-accent);
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* Loading & Error */
+.loading-container,
+.error-container {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--glass-background);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    margin: 0 auto var(--spacing-md);
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Premium Weather Display Structure */
+.weather-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Main Locations Header (City Name) */
+.location-info {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.city-name {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.weather-date {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    font-weight: 400;
+}
+
+/* Big Temperature Display */
+.main-weather-display {
+    text-align: center;
+    padding: var(--spacing-md) 0;
+}
+
+.temperature-hero {
+    font-size: 6rem;
+    font-weight: 200;
+    /* Thin modern look */
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #fff 20%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--spacing-xs);
+}
+
+.condition-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Bento Grid System */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bento-card-large {
+        grid-column: span 2;
+    }
+}
+
+.bento-card {
+    background: var(--glass-background);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card:hover {
+    background: var(--color-bg-card-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bento-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+}
+
+.bento-header svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+.bento-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.bento-unit {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-left: 2px;
+}
+
+.bento-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    margin-top: auto;
+    padding-top: var(--spacing-sm);
+    line-height: 1.4;
+}
+
+/* Specific Card Tweaks */
+.feels-like-val {
+    color: #ffd700;
+}
+
+.humidity-val {
+    color: #4facfe;
+}
+
+.wind-val {
+    color: #00f260;
+}
+
+.pressure-val {
+    color: #ff9a9e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .temperature-hero {
+        font-size: 4.5rem;
+    }
+
+    .city-name {
+        font-size: 2rem;
+    }
+}
