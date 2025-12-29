@@ -116,7 +116,10 @@ function getMoonPhaseInfo(moonPhase) {
     const illumination = Math.round(moonPhase * 100);
 
     // Fallback if no range matched (shouldn't happen with correct ranges)
-    return phase || { name: 'New Moon', icon: '🌑', illumination };
+    if (phase) {
+        return { ...phase, illumination };
+    }
+    return { name: 'New Moon', icon: '🌑', illumination };
 }
 
 // Helper: Get weather description from WMO code
