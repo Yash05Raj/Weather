@@ -34,6 +34,14 @@
                 <div class="search-wrapper">
                     <input type="text" id="city-input" class="search-input" placeholder="Enter city name..."
                         autocomplete="off" aria-label="City name" required>
+                    <button type="button" id="location-button" class="location-button" aria-label="Use my location"
+                        title="Use my location">
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
                     <button type="submit" id="search-button" class="search-button" aria-label="Search weather">
                         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -130,6 +138,96 @@
                     </div>
                     <div class="bento-value pressure-val" id="pressure">--<span class="bento-unit">hPa</span></div>
                     <div class="bento-desc">Stable atmospheric conditions.</div>
+                </div>
+
+                <!-- Visibility -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        Visibility
+                    </div>
+                    <div class="bento-value" id="visibility">--<span class="bento-unit">km</span></div>
+                    <div class="bento-desc">View distance.</div>
+                </div>
+
+                <!-- Cloud Coverage -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+                        </svg>
+                        Cloud Cover
+                    </div>
+                    <div class="bento-value" id="cloud-cover">--<span class="bento-unit">%</span></div>
+                    <div class="bento-desc">Sky coverage.</div>
+                </div>
+
+                <!-- Precipitation -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                        </svg>
+                        Precipitation
+                    </div>
+                    <div class="bento-value" id="precipitation">--<span class="bento-unit">mm</span></div>
+                    <div class="bento-desc">Current volume.</div>
+                </div>
+
+                <!-- Wind Gust -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2" />
+                        </svg>
+                        Wind Gust
+                    </div>
+                    <div class="bento-value" id="wind-gust">--<span class="bento-unit">km/h</span></div>
+                    <div class="bento-desc">Max gusts.</div>
+                </div>
+
+                <!-- Sun Times -->
+                <div class="bento-card bento-card-wide">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5" />
+                            <path
+                                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                        </svg>
+                        Sun Times
+                    </div>
+                    <div class="sun-times">
+                        <div class="sun-time">
+                            <span class="sun-icon">🌅</span>
+                            <span id="sunrise" class="sun-text">--:--</span>
+                            <span class="sun-label">Sunrise</span>
+                        </div>
+                        <div class="sun-time">
+                            <span class="sun-icon">🌇</span>
+                            <span id="sunset" class="sun-text">--:--</span>
+                            <span class="sun-label">Sunset</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moon Phase -->
+                <div class="bento-card bento-card-wide">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                        Moon Phase
+                    </div>
+                    <div class="moon-info">
+                        <span class="moon-icon" id="moon-icon">🌙</span>
+                        <div class="moon-details">
+                            <div id="moon-phase-name" class="moon-name">--</div>
+                            <div id="moon-illumination" class="moon-illum">--% illuminated</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

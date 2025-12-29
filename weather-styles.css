@@ -208,14 +208,43 @@ body {
 }
 
 /* Loading & Error */
-.loading-container,
-.error-container {
+.loading-container {
     text-align: center;
     padding: var(--spacing-xl);
     background: var(--glass-background);
     backdrop-filter: blur(var(--glass-blur));
     border-radius: var(--radius-lg);
     border: 1px solid var(--glass-border);
+}
+
+.error-container {
+    text-align: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(255, 100, 100, 0.1);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 100, 100, 0.2);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    max-width: 100%;
+}
+
+.error-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #ff6b6b;
+    stroke-width: 2.5;
+}
+
+.error-message {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-align: left;
+    margin: 0;
+    line-height: 1.5;
 }
 
 .loading-spinner {
@@ -306,9 +335,96 @@ body {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .bento-card-large {
+    .bento-card-large,
+    .bento-card-wide {
         grid-column: span 2;
     }
+}
+
+/* Location Button */
+.location-button {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+    margin-right: var(--spacing-xs);
+}
+
+.location-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-primary);
+    transform: scale(1.1);
+}
+
+.location-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Sun Times Styles */
+.sun-times {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--spacing-xs) 0;
+    width: 100%;
+}
+
+.sun-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.sun-icon {
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+}
+
+.sun-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.sun-label {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+/* Moon Phase Styles */
+.moon-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xs) 0;
+}
+
+.moon-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.moon-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.moon-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.moon-illum {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
 }
 
 .bento-card {
