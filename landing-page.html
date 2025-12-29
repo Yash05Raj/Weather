@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Modern weather app with real-time weather information. Search weather by city name with beautiful glassmorphism UI.">
-    <meta name="keywords" content="weather, weather app, forecast, temperature, humidity, wind speed">
-    <meta name="author" content="Weather App">
-    <title>Weather App - Real-time Weather Information</title>
+    <meta name="description" content="Premium weather app with real-time updates, geolocation, and dynamic animations.">
+    <title>Weather App - Premium Experience</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +17,13 @@
 </head>
 
 <body>
+    <!-- Dynamic Background Layer -->
+    <div id="weather-background" class="weather-background">
+        <!-- Animation elements will be injected here via CSS/JS -->
+        <div class="bg-gradient"></div>
+        <div class="bg-overlay"></div>
+    </div>
+
     <!-- Main Container -->
     <div class="container">
         <!-- Header Section -->
@@ -32,8 +36,20 @@
         <section class="search-section">
             <form id="search-form" class="search-form" role="search">
                 <div class="search-wrapper">
+                    <!-- Location Button -->
+                    <button type="button" id="location-button" class="location-button" aria-label="Use current location"
+                        title="Use current location">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z">
+                            </path>
+                            <path d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"></path>
+                        </svg>
+                    </button>
+
                     <input type="text" id="city-input" class="search-input" placeholder="Enter city name..."
-                        autocomplete="off" aria-label="City name" required>
+                        autocomplete="off" aria-label="City name">
+
                     <button type="submit" id="search-button" class="search-button" aria-label="Search weather">
                         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -68,7 +84,6 @@
             <div class="location-info">
                 <h2 id="city-name" class="city-name">--</h2>
                 <p id="weather-date" class="weather-date">--</p>
-                <!-- Search Button Mobile Trigger could go here if needed -->
             </div>
 
             <!-- Main Weather Display (Hero) -->
@@ -91,7 +106,7 @@
                         Feels Like
                     </div>
                     <div class="bento-value feels-like-val" id="feels-like">--°</div>
-                    <div class="bento-desc">Similar to actual temperature.</div>
+                    <div class="bento-desc">Similar to actual temp.</div>
                 </div>
 
                 <!-- Humidity -->
@@ -103,7 +118,7 @@
                         Humidity
                     </div>
                     <div class="bento-value humidity-val" id="humidity">--<span class="bento-unit">%</span></div>
-                    <div class="bento-desc">The dew point is 15° right now.</div>
+                    <div class="bento-desc">Dew point is 15°.</div>
                 </div>
 
                 <!-- Wind -->
@@ -116,7 +131,7 @@
                         Wind
                     </div>
                     <div class="bento-value wind-val" id="wind-speed">--<span class="bento-unit">km/h</span></div>
-                    <div class="bento-desc">Direction: <span id="wind-deg">NW</span></div>
+                    <div class="bento-desc">Dir: <span id="wind-deg">NW</span></div>
                 </div>
 
                 <!-- Pressure -->
@@ -129,7 +144,57 @@
                         Pressure
                     </div>
                     <div class="bento-value pressure-val" id="pressure">--<span class="bento-unit">hPa</span></div>
-                    <div class="bento-desc">Stable atmospheric conditions.</div>
+                    <div class="bento-desc">Stable conditions.</div>
+                </div>
+
+                <!-- Sunrise -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 18a5 5 0 0 0-10 0"></path>
+                            <line x1="12" y1="2" x2="12" y2="9"></line>
+                            <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                            <line x1="1" y1="18" x2="3" y2="18"></line>
+                            <line x1="21" y1="18" x2="23" y2="18"></line>
+                            <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                            <line x1="23" y1="22" x2="1" y2="22"></line>
+                            <polyline points="8 6 12 2 16 6"></polyline>
+                        </svg>
+                        Sunrise
+                    </div>
+                    <div class="bento-value sunrise-val" id="sunrise">--:--</div>
+                    <div class="bento-desc">Clear horizon.</div>
+                </div>
+
+                <!-- Sunset -->
+                <div class="bento-card">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 18a5 5 0 0 0-10 0"></path>
+                            <line x1="12" y1="9" x2="12" y2="2"></line>
+                            <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                            <line x1="1" y1="18" x2="3" y2="18"></line>
+                            <line x1="21" y1="18" x2="23" y2="18"></line>
+                            <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                            <line x1="23" y1="22" x2="1" y2="22"></line>
+                            <polyline points="16 5 12 9 8 5"></polyline>
+                        </svg>
+                        Sunset
+                    </div>
+                    <div class="bento-value sunset-val" id="sunset">--:--</div>
+                    <div class="bento-desc">Golden hour soon.</div>
+                </div>
+
+                <!-- Moon -->
+                <div class="bento-card bento-card-wide">
+                    <div class="bento-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        Moon
+                    </div>
+                    <div class="bento-value moon-val" id="moon-phase">--%</div>
+                    <div class="bento-desc">Waxing Crescent</div>
                 </div>
             </div>
         </section>
