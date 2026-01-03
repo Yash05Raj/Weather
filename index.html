@@ -10,25 +10,20 @@
     <meta name="author" content="Weather App">
     <title>Weather App - Real-time Weather Information</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="weather-styles.css">
 </head>
 
 <body>
-    <!-- Main Container -->
     <div class="container">
-        <!-- Header Section -->
         <header class="header">
             <h1 class="app-title">Weather</h1>
             <p class="app-subtitle">Real-time weather information</p>
         </header>
 
-        <!-- Search Section -->
         <section class="search-section">
             <form id="search-form" class="search-form" role="search">
                 <div class="search-wrapper">
@@ -53,13 +48,11 @@
             </form>
         </section>
 
-        <!-- Loading Animation -->
         <div id="loading-container" class="loading-container hidden">
             <div class="loading-spinner"></div>
             <p class="loading-text">Fetching weather data...</p>
         </div>
 
-        <!-- Error Message -->
         <div id="error-container" class="error-container hidden">
             <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -70,16 +63,12 @@
             <p id="error-message" class="error-message"></p>
         </div>
 
-        <!-- Weather Display Section -->
         <section id="weather-section" class="weather-section hidden">
-            <!-- Location Info -->
             <div class="location-info">
                 <h2 id="city-name" class="city-name">--</h2>
                 <p id="weather-date" class="weather-date">--</p>
-                <!-- Search Button Mobile Trigger could go here if needed -->
             </div>
 
-            <!-- Main Weather Display (Hero) -->
             <div class="main-weather-display">
                 <div class="temperature-hero" id="temperature">--°</div>
                 <div class="condition-pill">
@@ -88,9 +77,7 @@
                 </div>
             </div>
 
-            <!-- Bento Grid Details -->
             <div class="bento-grid">
-                <!-- Feels Like -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -102,7 +89,6 @@
                     <div class="bento-desc">Similar to actual temperature.</div>
                 </div>
 
-                <!-- Humidity -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -114,7 +100,6 @@
                     <div class="bento-desc">The dew point is 15° right now.</div>
                 </div>
 
-                <!-- Wind -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -127,7 +112,6 @@
                     <div class="bento-desc">Direction: <span id="wind-deg">NW</span></div>
                 </div>
 
-                <!-- Pressure -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -140,7 +124,6 @@
                     <div class="bento-desc">Stable atmospheric conditions.</div>
                 </div>
 
-                <!-- Visibility -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -153,7 +136,6 @@
                     <div class="bento-desc">View distance.</div>
                 </div>
 
-                <!-- Cloud Coverage -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -165,7 +147,6 @@
                     <div class="bento-desc">Sky coverage.</div>
                 </div>
 
-                <!-- Precipitation -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -177,7 +158,6 @@
                     <div class="bento-desc">Current volume.</div>
                 </div>
 
-                <!-- Wind Gust -->
                 <div class="bento-card">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -189,7 +169,6 @@
                     <div class="bento-desc">Max gusts.</div>
                 </div>
 
-                <!-- Sun Times -->
                 <div class="bento-card bento-card-wide">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -213,7 +192,6 @@
                     </div>
                 </div>
 
-                <!-- Moon Phase -->
                 <div class="bento-card bento-card-wide">
                     <div class="bento-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -233,7 +211,6 @@
         </section>
     </div>
 
-    <!-- JavaScript -->
     <script src="weather-app.js"></script>
 </body>
 
