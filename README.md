@@ -1,14 +1,14 @@
 # Weather App
 
-A modern, responsive weather application that displays real-time weather information with a beautiful glassmorphism UI.
+A modern, responsive weather application that displays real-time weather information with a beautiful glassmorphism UI and starry night background.
 
 ## Features
 
 - **Real-time Weather Data** - Current weather conditions, temperature, humidity, wind speed, and more
-- **5-Day Forecast** - View upcoming weather predictions
-- **Location Services** - Automatic location detection using geolocation API
-- **City Search** - Search for any Indian city with autocomplete suggestions
-- **Comprehensive Metrics** - Displays visibility, UV index, precipitation, cloud coverage, wind gusts, sunrise/sunset times, and moon phases
+- **Automatic Location Detection** - Uses geolocation API to detect your current location
+- **City Search** - Search for any Indian city with validation and suggestions
+- **Comprehensive Metrics** - Displays visibility, precipitation, cloud coverage, wind gusts, sunrise/sunset times, and moon phases
+- **Beautiful UI** - Glassmorphism design with starry background and smooth animations
 - **Responsive Design** - Works seamlessly on desktop and mobile devices
 
 ## Technologies Used
@@ -16,19 +16,35 @@ A modern, responsive weather application that displays real-time weather informa
 - **HTML5** - Structure and semantic markup
 - **CSS3** - Styling with glassmorphism effects and animations
 - **JavaScript (ES6+)** - Dynamic functionality and API integration
-- **OpenMeteo API** - Free weather data without API key requirement
+- **OpenMeteo API** - Free weather data (no API key required)
+
+## How to Run
+
+Simply open `index.html` in your web browser. That's it!
+
+### Using a Local Server (Optional)
+
+For the best experience with geolocation features, you can run it on a local server:
+
+**Option 1: VS Code Live Server**
+1. Install the Live Server extension in VS Code
+2. Right-click on `index.html` and select "Open with Live Server"
+
+**Option 2: Python**
+```bash
+python -m http.server 8000
+```
+Then open `http://localhost:8000` in your browser.
 
 ## How to Use
 
-1. **Open the App** - Simply open `index.html` in your web browser
-2. **Automatic Location** - The app will request your location on load
+1. **Automatic Location** - On page load, the app will request your location permission
+2. **Allow Location** - Click "Allow" to see weather for your current location
 3. **Search Cities** - Enter any Indian city name in the search bar
-4. **View Weather** - See detailed weather information displayed in an elegant card layout
+4. **Location Button** - Click the location icon to refresh your current location weather
 
 ## Project Structure
 
-<<<<<<< Updated upstream
-=======
 ```
 Weather/
 ├── index.html          # Main HTML file
@@ -42,18 +58,35 @@ Weather/
 This app uses the **OpenMeteo API** which provides:
 - No API key required
 - Free weather data
-- Geocoding services for location search
+- Geocoding services for city search
+- Reverse geocoding for coordinates to city name
 - Comprehensive weather metrics
+
+## Weather Data Displayed
+
+- Temperature (current and feels like)
+- Weather condition description
+- Humidity percentage
+- Wind speed and direction
+- Wind gusts
+- Atmospheric pressure
+- Visibility distance
+- Cloud coverage
+- Precipitation amount
+- Sunrise and sunset times
+- Moon phase and illumination
 
 ## Browser Support
 
-Works on all modern browsers including:
+Works on all modern browsers:
 - Chrome
 - Firefox
 - Safari
 - Edge
 
-## Author
+## Notes
 
-Created as a weather application project demonstrating modern web development practices.
->>>>>>> Stashed changes
+- The app validates Indian cities only
+- If a city is not found, suggestions will be provided
+- Geolocation requires HTTPS or localhost for security
+- Background changes based on weather conditions
