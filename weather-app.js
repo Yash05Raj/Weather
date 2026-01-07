@@ -1,6 +1,7 @@
 // API Configuration
 const OPENMETEO_BASE_URL = 'https://api.open-meteo.com/v1/forecast';
 const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+const NOMINATIM_URL = 'https://nominatim.openstreetmap.org/search';
 
 // Indian cities database for validation
 const INDIAN_CITIES = [
@@ -57,17 +58,92 @@ function findSimilarCities(city, maxSuggestions = 3) {
     return suggestions.slice(0, maxSuggestions);
 }
 
-// Converts city name to geographical coordinates
-async function getCityCoordinates(cityName) {
-    const url = `${GEOCODING_URL}?name = ${encodeURIComponent(cityName)}& count=1 & language=en & format=json`;
-    const response = await fetch(url);
-    const data = await response.json();
+// Geocodes location using Nominatim (OpenStreetMap) - Primary service
+async function geocodeWithNominatim(locationName) {
+    try {
+        const url = `${NOMINATIM_URL}?q=${encodeURIComponent(locationName)}&format=json&countrycodes=IN&limit=5&addressdetails=1`;
+        const response = await fetch(url, {
+            headers: {
+                'User-Agent': 'WeatherApp/1.0' // Required by Nominatim usage policy
+            }
+        });
 
-    if (!data.results || data.results.length === 0) {
-        throw new Error('City not found');
+        if (!response.ok) {
+            throw new Error('Nominatim API request failed');
+        }
+
+        const data = await response.json();
+
+        if (!data || data.length === 0) {
+            return null;
+        }
+
+        // Get the first result
+        const result = data[0];
+
+        // Format the location name from address details
+        let displayName = result.display_name;
+        if (result.address) {
+            const addr = result.address;
+            // Prioritize city/town/village names
+            const cityName = addr.city || addr.town || addr.village || addr.state_district || addr.county;
+            const stateName = addr.state;
+            if (cityName && stateName) {
+                displayName = `${cityName}, ${stateName}`;
+            } else if (cityName) {
+                displayName = cityName;
+            }
+        }
+
+        return {
+            latitude: parseFloat(result.lat),
+            longitude: parseFloat(result.lon),
+            name: displayName
+        };
+    } catch (error) {
+        console.warn('Nominatim geocoding failed:', error);
+        return null;
+    }
+}
+
+// Geocodes location using Open-Meteo - Fallback service
+async function geocodeWithOpenMeteo(locationName) {
+    try {
+        const url = `${GEOCODING_URL}?name=${encodeURIComponent(locationName)}&count=1&language=en&format=json`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+            return null;
+        }
+
+        return data.results[0];
+    } catch (error) {
+        console.warn('Open-Meteo geocoding failed:', error);
+        return null;
+    }
+}
+
+// Converts city name to geographical coordinates using dual geocoding system
+async function getCityCoordinates(cityName) {
+    // Try Nominatim first (better India coverage)
+    let location = await geocodeWithNominatim(cityName);
+
+    if (location) {
+        console.log('Location found via Nominatim:', location);
+        return location;
     }
 
-    return data.results[0];
+    // Fallback to Open-Meteo
+    location = await geocodeWithOpenMeteo(cityName);
+
+    if (location) {
+        console.log('Location found via Open-Meteo:', location);
+        return location;
+    }
+
+    // If both fail, throw error
+    throw new Error(`Location "${cityName}" not found. Please try a specific city name.`);
 }
 
 // Converts geographical coordinates to a city name
@@ -252,18 +328,8 @@ async function handleSearch(e) {
         return;
     }
 
-    if (!isValidIndianCity(city)) {
-        const suggestions = findSimilarCities(city);
-        let errorMsg = `City "${city}" not found in India. Please enter a valid Indian city.`;
-
-        if (suggestions.length > 0) {
-            errorMsg += `\n\nDid you mean: ${suggestions.join(', ')}?`;
-        }
-
-        showError(errorMsg);
-        return;
-    }
-
+    // Remove the validation check - let the geocoding API handle it
+    // This allows searching for any location in India, not just predefined cities
     await fetchWeatherData(city);
 }
 
@@ -272,7 +338,7 @@ async function fetchWeatherData(city) {
     try {
         showLoading();
         const location = await getCityCoordinates(city);
-        await fetchAndDisplayWeather(location.latitude, location.longitude, `${location.name}, ${location.country || ''}`);
+        await fetchAndDisplayWeather(location.latitude, location.longitude, location.name);
     } catch (error) {
         showError(error.message || 'Failed to fetch weather data.');
     }
@@ -365,9 +431,26 @@ function displayWeatherData(data, locationName) {
     cityInput.value = '';
 }
 
-// Updates the background based on weather conditions
+// Gets the time of day based on current hour
+function getTimeOfDay() {
+    const hour = new Date().getHours();
+
+    if (hour >= 6 && hour < 12) {
+        return 'morning';
+    } else if (hour >= 12 && hour < 16) {
+        return 'afternoon';
+    } else if (hour >= 16 && hour < 19) {
+        return 'evening';
+    } else {
+        return 'night';
+    }
+}
+
+// Updates the background based on time of day
 function updateBackground(weatherMain, weatherId) {
-    document.body.className = `starry-background ${weatherMain.replace(/\s+/g, '-')}`;
+    const timeOfDay = getTimeOfDay();
+    // Always use time-based backgrounds as requested
+    document.body.className = timeOfDay;
 }
 
 // Gets the current date in a formatted string
