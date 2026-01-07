@@ -26,7 +26,7 @@ Simply open `index.html` in your web browser. That's it!
 
 For the best experience with geolocation features, you can run it on a local server:
 
-**Option 1: VS Code Live Server**
+**VS Code Live Server**
 1. Install the Live Server extension in VS Code
 2. Right-click on `index.html` and select "Open with Live Server"
 
