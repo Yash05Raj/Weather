@@ -30,12 +30,6 @@ For the best experience with geolocation features, you can run it on a local ser
 1. Install the Live Server extension in VS Code
 2. Right-click on `index.html` and select "Open with Live Server"
 
-**Option 2: Python**
-```bash
-python -m http.server 8000
-```
-Then open `http://localhost:8000` in your browser.
-
 ## How to Use
 
 1. **Automatic Location** - On page load, the app will request your location permission
