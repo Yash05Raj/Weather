@@ -18,6 +18,28 @@ A modern, responsive weather application that displays real-time weather informa
 - **JavaScript (ES6+)** - Dynamic functionality and API integration
 - **OpenMeteo API** - Free weather data (no API key required)
 
+## 🚀 Live Demo
+
+**Deployed on Vercel:** [View Live App](https://your-app-url.vercel.app) _(Update this after deployment)_
+
+## Deployment
+
+This app is deployed on **Vercel** for optimal performance and global CDN delivery.
+
+### Deploy Your Own
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Yash05Raj/Weather)
+
+**Manual Deployment Steps:**
+
+1. Fork or clone this repository
+2. Sign up for a free account at [Vercel](https://vercel.com)
+3. Click "New Project" and import your GitHub repository
+4. Vercel will auto-detect it as a static site
+5. Click "Deploy" - no configuration needed!
+6. Your app will be live with a `.vercel.app` URL
+7. (Optional) Add a custom domain in Vercel settings
+
 ## How to Run
 
 Simply open `index.html` in your web browser. That's it!
