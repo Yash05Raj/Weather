@@ -35,10 +35,18 @@ This app is deployed on **Vercel** for optimal performance and global CDN delive
 1. Fork or clone this repository
 2. Sign up for a free account at [Vercel](https://vercel.com)
 3. Click "New Project" and import your GitHub repository
-4. Vercel will auto-detect it as a static site
-5. Click "Deploy" - no configuration needed!
-6. Your app will be live with a `.vercel.app` URL
-7. (Optional) Add a custom domain in Vercel settings
+4. Select **"Other"** as the Framework Preset (this is a vanilla HTML/CSS/JS app)
+5. Leave Build Command and Output Directory empty
+6. Click "Deploy"
+7. Your app will be live with a `.vercel.app` URL
+8. (Optional) Add a custom domain in Vercel settings
+
+### Configuration
+
+The project includes a `vercel.json` file with security headers:
+- `X-Content-Type-Options: nosniff` - Prevents MIME type sniffing
+- `X-Frame-Options: DENY` - Prevents clickjacking attacks
+- `X-XSS-Protection: 1; mode=block` - Enables XSS filtering
 
 ## How to Run
 
