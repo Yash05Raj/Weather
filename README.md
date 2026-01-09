@@ -20,7 +20,7 @@ A modern, responsive weather application that displays real-time weather informa
 
 ## 🚀 Live Demo
 
-**Deployed on Vercel:** [View Live App](https://your-app-url.vercel.app) _(Update this after deployment)_
+**Deployed on Vercel:** [View Live App](https://weather-9cxk.vercel.app)
 
 ## Deployment
 
