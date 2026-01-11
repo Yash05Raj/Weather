@@ -171,15 +171,16 @@ function formatTime(isoString) {
 // Determines moon phase name, icon, and illumination from a 0-1 moon phase value
 function getMoonPhaseInfo(moonPhase) {
     // moonPhase is 0-1 from OpenMeteo
+    // Simplified emoji progression: 🌑 → 🌓 → 🌕 → 🌗 → 🌑
     const phases = [
         { name: 'New Moon', icon: '🌑', range: [0, 0.03] },
-        { name: 'Waxing Crescent', icon: '🌒', range: [0.03, 0.22] },
+        { name: 'Waxing Crescent', icon: '🌑', range: [0.03, 0.22] },
         { name: 'First Quarter', icon: '🌓', range: [0.22, 0.28] },
-        { name: 'Waxing Gibbous', icon: '🌔', range: [0.28, 0.47] },
+        { name: 'Waxing Gibbous', icon: '🌓', range: [0.28, 0.47] },
         { name: 'Full Moon', icon: '🌕', range: [0.47, 0.53] },
-        { name: 'Waning Gibbous', icon: '🌖', range: [0.53, 0.72] },
+        { name: 'Waning Gibbous', icon: '🌗', range: [0.53, 0.72] },
         { name: 'Last Quarter', icon: '🌗', range: [0.72, 0.78] },
-        { name: 'Waning Crescent', icon: '🌘', range: [0.78, 0.97] },
+        { name: 'Waning Crescent', icon: '🌑', range: [0.78, 0.97] },
         { name: 'New Moon', icon: '🌑', range: [0.97, 1] }
     ];
 
